@@ -1,8 +1,12 @@
 import React from "react";
 
 const Card = props => {
+  var style = {
+    height: "100%"
+  };
+
   return (
-    <div class="card">
+    <div class="card" style={style}>
       <div class="card-image">
         <figure class="image is-4by3">
           <img
