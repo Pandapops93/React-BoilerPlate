@@ -1,7 +1,21 @@
-import React from "react";
+import React, {Component} from "react";
 import { BrowserRouter as Router, NavLink, Route } from "react-router-dom";
+import $ from 'jquery';
+class Navbar extends Component {
 
-const Navbar = () => {
+componentDidMount(){
+
+  $(".navbar-burger").click(function() {
+
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+
+});
+
+}
+
+render(){
   return (
     <div>
       <nav
@@ -86,6 +100,7 @@ const Navbar = () => {
       </nav>
     </div>
   );
+}
 };
 
 export default Navbar;
