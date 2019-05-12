@@ -1,11 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, NavLink, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route,
+  Switch
+} from "react-router-dom";
 
 import Tiles from "../Tiles/Tiles";
 import LoremIpsum from "../LoremIpsum/LoremIpsum";
-
+import NoMatch from "../NoMatch";
 const MainContent = ({ match }) => {
-
   console.log(match);
   var style = {
     padding: "25px",
@@ -38,7 +42,10 @@ const MainContent = ({ match }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={`${match.url}/LoremIpsum`} activeClassName="active-link">
+              <NavLink
+                to={`${match.url}/LoremIpsum`}
+                activeClassName="active-link"
+              >
                 LoremIpsum
               </NavLink>
             </li>
@@ -49,16 +56,22 @@ const MainContent = ({ match }) => {
             </li>
           </ul>
         </div>
-
-        <Route path={`${match.url}/Tiles`} component={Tiles} />
-        <Route path={`${match.url}/LoremIpsum`} component={LoremIpsum} />
-        <Route exact={true} path={`${match.url}/`} render={() => <h1>Home</h1>} />
-        <Route
-         path={`${match.url}/Users`}
-          render={({ match }) => {
-            return <p>Users</p>;
-          }}
-        />
+        <Switch>
+          <Route path={`${match.url}/Tiles`} component={Tiles} />
+          <Route path={`${match.url}/LoremIpsum`} component={LoremIpsum} />
+          <Route
+            exact={true}
+            path={`${match.url}/`}
+            render={() => <h1>Home</h1>}
+          />
+          <Route
+            path={`${match.url}/Users`}
+            render={({ match }) => {
+              return <p>Users</p>;
+            }}
+          />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
     </div>
   );

@@ -8,12 +8,14 @@ import About from "./Components/About/About";
 import Footer from "./Components/Footer/Footer";
 import Jobs from "./Components/Jobs/Jobs";
 import Login from "./Components/Login/Login";
+import NoMatch from "./Components/NoMatch";
 import {
   BrowserRouter as Router,
   NavLink,
   Route,
   Redirect,
-  IndexRoute
+  IndexRoute,
+  Switch
 } from "react-router-dom";
 
 function App() {
@@ -29,10 +31,13 @@ function App() {
             return <Redirect exact={true} from="/" to="/home" />;
           }}
         />
+        <Switch>
         <Route path="/Home" component={MainContent} />
         <Route path="/About" component={About} />
         <Route path="/Jobs" component={Jobs} />
         <Route path="/Login" component={Login} />
+        <Route component={NoMatch} />
+        </Switch>
 
         <Footer />
       </Router>
