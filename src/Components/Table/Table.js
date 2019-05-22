@@ -89,7 +89,7 @@ class MyTable extends Component {
     render() {
         console.log("re Render", this.state);
     return (
-      <Table className="root">
+      <Table >
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
@@ -103,7 +103,7 @@ class MyTable extends Component {
             .map((row, index) => {
               return (
                 <TableRow key={row.name + row.age+ row.role}>
-                  <TableCell component="th" scope="row">
+                  <TableCell>
                     {row.name}
                   </TableCell>
 
