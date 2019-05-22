@@ -1,26 +1,27 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  NavLink,
-  Route,
-  Switch
-} from "react-router-dom";
+import { NavLink, Route, Switch } from "react-router-dom";
+import QS from "query-string";
 
 import Tiles from "../Tiles/Tiles";
 import LoremIpsum from "../LoremIpsum/LoremIpsum";
 import NoMatch from "../NoMatch";
-const MainContent = ({ match }) => {
+import MyTable from "../Table/Table";
+const MainContent = match => {
   console.log(match);
+
+  var params = QS.parse(match.location.search);
+
+  match = match.match;
+  console.log(params);
+
   var style = {
     padding: "25px",
     marginTop: "60px"
   };
 
-  var test = "hello";
+  
 
-  var activeStyle = {
-    color: "#209cee"
-  };
+
 
   return (
     <div>
@@ -28,7 +29,7 @@ const MainContent = ({ match }) => {
         <div class="hero-body">
           <div class="container">
             <h1 class="title">This is just a large Hero</h1>
-            <h2 class="subtitle">Some smaller text</h2>
+            <h2 class="subtitle">User id = {params.userid}</h2>
           </div>
         </div>
       </section>
@@ -42,10 +43,7 @@ const MainContent = ({ match }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to={`${match.url}/LoremIpsum`}
-                activeClassName="active-link"
-              >
+              <NavLink to={`${match.url}/LoremIpsum`} activeClassName="active-link">
                 LoremIpsum
               </NavLink>
             </li>
@@ -54,16 +52,18 @@ const MainContent = ({ match }) => {
                 Users
               </NavLink>
             </li>
+            <li>
+              <NavLink to={`${match.url}/Table`} activeClassName="active-link">
+                Table
+              </NavLink>
+            </li>
           </ul>
         </div>
         <Switch>
           <Route path={`${match.url}/Tiles`} component={Tiles} />
           <Route path={`${match.url}/LoremIpsum`} component={LoremIpsum} />
-          <Route
-            exact={true}
-            path={`${match.url}/`}
-            render={() => <h1>Home</h1>}
-          />
+          <Route path={`${match.url}/Table`} component={MyTable} />
+          <Route path={`${match.url}/`} render={() => <h1>Home</h1>} />
           <Route
             path={`${match.url}/Users`}
             render={({ match }) => {

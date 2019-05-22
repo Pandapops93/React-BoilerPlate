@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import TestApi from "../../TestApi";
+import Qs from "query-string";
 
 class Login extends Component {
   state = {
@@ -20,9 +22,16 @@ class Login extends Component {
   };
 
   onSubmit = event => {
-
     event.preventDefault();
-    alert(this.state.username + " " + this.state.password );
+    console.log("Logging in");
+    TestApi.post("User/Login", this.state).then(res => {
+      console.log(res);
+      var search = Qs.stringify({
+        userid: 1,
+        test: "boo"
+      });
+      if (res.status === 200) window.location = "/Home?" + search;
+    });
   };
 
   render() {
@@ -50,28 +59,16 @@ class Login extends Component {
 
                   <div class="field">
                     <div class="control">
-                      <input
-                        class="input is-large"
-                        type="password"
-                        placeholder="Your Password"
-                        onChange={this.onPasswordChange}
-                        value={this.state.password}
-                      />
+                      <input class="input is-large" type="password" placeholder="Your Password" onChange={this.onPasswordChange} value={this.state.password} />
                     </div>
                   </div>
                   <div class="field">
                     <label class="checkbox">
-                      <input
-                        type="checkbox"
-                        checked={this.state.rememberMe}
-                        onChange={this.rememberMeChecked}
-                      />
+                      <input type="checkbox" checked={this.state.rememberMe} onChange={this.rememberMeChecked} />
                       Remember me
                     </label>
                   </div>
-                  <button class="button is-block is-info is-large is-fullwidth">
-                    Login
-                  </button>
+                  <button class="button is-block is-info is-large is-fullwidth">Login</button>
                 </form>
               </div>
               <p class="has-text-grey">
