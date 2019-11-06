@@ -12,8 +12,8 @@ pool:
 
   # define variables to use during the build
 variables:
-  projectFolder: 'src/react'
-  buildOutputFolder: 'src/react/build'
+  projectFolder: 'src'
+  buildOutputFolder: 'src/build'
 
 steps:
 - task: NodeTool@0
