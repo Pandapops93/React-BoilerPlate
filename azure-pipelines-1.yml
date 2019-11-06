@@ -1,22 +1,31 @@
-# Build ASP.NET Core project using Azure Pipelines
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=vsts
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-# define the VM image I want to use for my build
+trigger:
+- master
+
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'ubuntu-latest'
 
-# define variables to use during the build
+
+  # define variables to use during the build
 variables:
   projectFolder: 'src/react'
   buildOutputFolder: 'src/react/build'
 
-# define the steps of the build
 steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 
-## Run the npm install/build
 - script: |
-    pushd $(projectFolder) && npm install && popd
-    pushd $(projectFolder) && npm run build && popd
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
 ## Copy the client to the staging directory
 - task: CopyFiles@2
   inputs:
