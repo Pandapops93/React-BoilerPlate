@@ -36,6 +36,7 @@ function App() {
         <Route path="/About" component={About} />
         <Route path="/Jobs" component={Jobs} />
         <Route path="/Login" component={Login} />
+        <Route path="/" name="Home" component={MainContent} />
         <Route component={NoMatch} />
         </Switch>
 
@@ -44,5 +45,5 @@ function App() {
     </div>
   );
 }
-
+//dgfdsf
 export default App;
