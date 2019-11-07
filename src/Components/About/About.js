@@ -60,7 +60,7 @@ class About extends Component {
           <div class="hero-body">
             <div class="container">
               <h1 class="title">About</h1>
-              <h2 class="subtitle">Some smaller text lalalala</h2>
+              <h2 class="subtitle">Some smaller text </h2>
               <form
                 onSubmit={event => this.getPhotos(event, this.state.albumId)}
               >
