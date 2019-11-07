@@ -42,7 +42,8 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     includeRootFolder: false
 
-## Publish the zip file
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    pathtoPublish: '$(Build.SourcesDirectory)/result.zip' 
+    artifactName: 'drop' 
+  displayName: 'upload artifacts'
