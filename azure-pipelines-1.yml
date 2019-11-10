@@ -46,3 +46,16 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+
+- task: ado-discord-webhook@1
+  inputs:
+    channelId: '643040473107398667'
+    webhookKey: '_YR4vlK0cB9HXevN0vuwU-fiJHwyL_uI8UNqPpSkshpDlGiNulWWlKPNLfqOXFSJz2P8'
+    messageType: 'embeds'
+    embeds: |
+      [{
+      "title":"React Boiler Plate Build Complete",
+      "author" : {
+      "name" : "Azure Dev Ops"
+      }
+      }]
